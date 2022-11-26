@@ -4,7 +4,7 @@ RUN apk update && apk add --no-cache build-base ncurses-dev
 
 RUN bundle config --global frozen 1
 
-WORKDIR /usr/src/app
+WORKDIR /
 
 COPY Gemfile Gemfile.lock ./
 RUN bundle install
