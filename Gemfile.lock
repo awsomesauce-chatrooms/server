@@ -5,6 +5,7 @@ GEM
     lmdb (0.6.1)
 
 PLATFORMS
+  aarch64-linux-musl
   x86_64-linux
 
 DEPENDENCIES
@@ -12,4 +13,4 @@ DEPENDENCIES
   lmdb
 
 BUNDLED WITH
-   2.4.0.dev
+   2.3.7
