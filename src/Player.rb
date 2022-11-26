@@ -56,7 +56,7 @@ class Player
 
     for c in @server.clients
       if c.socket != @client.socket
-        write((PacketWrite.new).writeByte(0x02).writeString(c.player.username))
+        @client.write((PacketWrite.new).writeByte(0x02).writeString(c.player.username))
       end
     end
 
