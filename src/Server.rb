@@ -12,15 +12,16 @@ class Server
   attr_accessor :clients, :commands, :config, :db, :history
 
   def broadcast(pack, ignore = false)
+    ext = pack.extract()
     for c in @clients
       if c.player.username == ignore or c.socket == ignore; return; end
-
-      c.write(pack)
+      c.write(ext, true)
     end
   end
 
 
   def initialize(port)
+    puts "Running on port #{port}!"
     @server = TCPServer.new port
     @commands = Commands.new self
     @clients = []
@@ -50,9 +51,13 @@ class Server
             @clients.append(c)
 
             if !c.start()
-              broadcast((PacketWrite.new).writeByte(0x03).writeString(c.player.username), client)
 
-              @db.set(c.player.token, c.player.username)
+              broadcast((PacketWrite.new).writeByte(0x03).writeString(c.player.username), client)
+              begin
+                @db.set(c.player.token, c.player.username)
+              rescue
+                puts "invalid connection attempted to connect"
+              end
             end
 
             @clients.delete(c)

@@ -3,11 +3,17 @@ require "./src/Player.rb"
 class Client
   attr_accessor :player, :socket, :server, :ip
 
-  def write(writer)
+  def write(writer, raw = false)
+    if raw
+      packet = writer
+    else
+      packet = writer.extract()
+    end
+
     begin
-      @socket.send(writer.extract(), 0)
+      @socket.send(packet, 0)
     rescue
-      puts "connection broke while send"
+      puts "connection broke while send. failed writing ID#{zz[0].ord}"
     end
   end
 

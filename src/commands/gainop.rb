@@ -7,8 +7,7 @@ def gainop(command, client, args, server)
 
   if args.join(" ") == server.config["password"]
     client.changeUsername("@" + client.username)
-    client.chat("> Welcome back " + client.username + "!")
-
+    client.chat("> "+  client.username + " sucesfully authenicated!")
   else
     client.chat("> Missing permissions.")
   end
