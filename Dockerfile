@@ -1,6 +1,6 @@
 FROM ruby:alpine
 
-RUN apk update && apk add --no-cache build-base ncurses-dev
+RUN apk update && apk add --no-cache build-base ncurses-dev ruby-dev
 
 RUN bundle config --global frozen 1
 
